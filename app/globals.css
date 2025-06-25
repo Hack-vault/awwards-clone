@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Open+Sans:wght@400;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 html,
 body {
-	@apply h-full w-full;
+	@apply h-full w-full font-roboto; /* Set Roboto as default font */
 }
 
 ::-webkit-scrollbar {
@@ -12,27 +14,35 @@ body {
 }
 
 :root {
-	--foreground-rgb: 0, 0, 0;
-	--background-start-rgb: 214, 219, 220;
-	--background-end-rgb: 255, 255, 255;
+	--foreground-rgb: theme('colors.google-grey-900'); /* Dark grey for text */
+	--background-start-rgb: theme('colors.google-grey-50'); /* Light grey for background */
+	--background-end-rgb: theme('colors.google-grey-100'); /* Slightly darker grey for gradient end */
+
+    /* Primary color */
+    --primary-color: theme('colors.google-blue-500');
 }
 
+/* Basic dark mode - can be expanded later if needed */
 @media (prefers-color-scheme: dark) {
 	:root {
-		--foreground-rgb: 255, 255, 255;
-		--background-start-rgb: 0, 0, 0;
-		--background-end-rgb: 0, 0, 0;
+		--foreground-rgb: theme('colors.google-grey-100');
+		--background-start-rgb: theme('colors.google-grey-800');
+		--background-end-rgb: theme('colors.google-grey-900');
+
+        --primary-color: theme('colors.google-blue-300');
 	}
 }
 
 body {
-	color: rgb(var(--foreground-rgb));
-	background: linear-gradient(
+	color: var(--foreground-rgb);
+	background-color: var(--background-start-rgb); /* Simpler background */
+    /* Optional: restore gradient if preferred, with new colors */
+	/* background: linear-gradient(
 			to bottom,
 			transparent,
-			rgb(var(--background-end-rgb))
+			var(--background-end-rgb)
 		)
-		rgb(var(--background-start-rgb));
+		var(--background-start-rgb); */
 }
 
 @layer utilities {
